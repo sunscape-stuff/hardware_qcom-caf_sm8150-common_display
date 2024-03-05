@@ -197,6 +197,9 @@ struct LayerFlags {
                                    //! will have highest priority. To be used by OEMs only.
 
 #ifdef FOD_ZPOS
+      uint32_t reserved : 25;      //!< This flag reserves the remaining 4 * 8 - (6 + 1) bits to
+                                   //!< avoid future ABI breakage
+
       uint32_t fod_pressed : 1;    //!< This flag shall be set internally to mark the fod pressed
                                    //!< layer
 #endif
@@ -292,6 +295,8 @@ struct LayerStackFlags {
       uint32_t mask_present : 1;  //!< Set if layer stack has mask layers.
 
       uint32_t scaling_rgb_layer_present : 1;  //!< Set if scaling rgb layer is present
+
+      uint32_t fod_pressed_present : 1;
     };
 
     uint32_t flags = 0;               //!< For initialization purpose only.
@@ -469,4 +474,3 @@ struct LayerStack {
 }  // namespace sdm
 
 #endif  // __LAYER_STACK_H__
-
